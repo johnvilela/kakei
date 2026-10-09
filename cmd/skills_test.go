@@ -82,6 +82,15 @@ func TestSkillFiles(t *testing.T) {
 			if !strings.Contains(body, "minor units") {
 				t.Error("body never states the minor-units rule")
 			}
+
+			// The Omni skill must point chat at the two LLM commands, and the
+			// import skill must cover photos — what /pecunia-import exists for.
+			if e.Name() == "pecunia-omni.md" && !strings.Contains(body, "/pecunia-import") {
+				t.Error("pecunia-omni never names /pecunia-import")
+			}
+			if e.Name() == "pecunia-import.md" && !strings.Contains(body, "photo") {
+				t.Error("pecunia-import never mentions photos")
+			}
 		})
 	}
 }

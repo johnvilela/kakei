@@ -1,6 +1,6 @@
 ---
 name: pecunia-import
-description: Import transactions into pecunia from bank statements and exports the user provides — PDF, CSV, JSON or OFX — mapping them to accounts, cards and categories without creating duplicates. Use when the user shares a statement or export file, or asks to import, load or migrate their transactions.
+description: Import transactions into pecunia from bank statements and exports the user provides — PDF, CSV, JSON, OFX, or a photo of a receipt or statement — mapping them to accounts, cards and categories without creating duplicates. Use when the user shares a statement, export file or receipt photo, or asks to import, load or migrate their transactions.
 ---
 
 # pecunia-import
@@ -32,6 +32,10 @@ then write — with the user's approval on the whole batch.
   statements are usually all outcome with payments as the exception.
 - Keep the original description — it is the user's best memory of what a row
   was.
+- A photo is either a receipt — one purchase: date, merchant, total, and the
+  parcel count when printed — or a statement screenshot, read row by row like
+  a PDF. A figure you cannot read with confidence gets one request for a
+  sharper photo or the PDF — never a guessed amount.
 
 ## map
 
@@ -45,6 +49,9 @@ then write — with the user's approval on the whole batch.
   income and an outcome — file it through the transfer action.
 - A card purchase split in N parcels is one transaction with installments, not
   N separate entries.
+- The payment of a card statement is `pay_bill` on `pecunia_credit_cards` from
+  the paying account, not a transaction — and only once, even when it shows on
+  both the card and the account statement.
 
 ## skip duplicates
 
@@ -62,3 +69,10 @@ doubt (same amount, same day, twice on the statement), ask rather than guess.
   what landed: rows imported and skipped, and totals in and out per currency.
 - If anything fails partway, report exactly which rows were written and which
   were not — never re-run the whole batch blind.
+
+## under Omni
+
+`/pecunia-import [account or card]` runs these rules as an agent session on
+Telegram. The file arrives as a `[file: /abs/path]` marker — read it from
+disk; when none has arrived yet, ask for it in one short message and wait.
+Replies are short plain lines, no tables, in the owner's language.

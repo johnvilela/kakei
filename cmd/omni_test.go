@@ -283,8 +283,8 @@ func TestManifest(t *testing.T) {
 	if m.MCP.Command != "pecunia" || len(m.MCP.Args) != 1 || m.MCP.Args[0] != "mcp" {
 		t.Errorf("mcp entry is %+v", m.MCP)
 	}
-	if len(m.Commands) != 9 {
-		t.Fatalf("got %d commands; want 9", len(m.Commands))
+	if len(m.Commands) != 10 {
+		t.Fatalf("got %d commands; want 10", len(m.Commands))
 	}
 	if !slices.ContainsFunc(m.Commands, func(c omniCmd) bool {
 		return c.Name == "pecunia_notes" && slices.Equal(c.Argv, []string{"pecunia", "omni", "notes"})
@@ -316,6 +316,10 @@ func TestManifest(t *testing.T) {
 	coach := m.Commands[len(m.Commands)-1]
 	if coach.Name != "pecunia_coach" || coach.Prompt != coachPrompt {
 		t.Errorf("last command is %q with prompt %d chars; want pecunia_coach carrying coachPrompt", coach.Name, len(coach.Prompt))
+	}
+	imp := m.Commands[len(m.Commands)-2]
+	if imp.Name != "pecunia_import" || imp.Prompt != importPrompt || len(imp.Argv) != 0 {
+		t.Errorf("second to last command is %q with prompt %d chars and argv %v; want pecunia_import carrying importPrompt", imp.Name, len(imp.Prompt), imp.Argv)
 	}
 }
 

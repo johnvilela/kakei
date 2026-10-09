@@ -58,14 +58,22 @@ instead of re-computing it yourself:
 - `/pecunia-add AMOUNT TITLE [@ACCOUNT] [#CATEGORY]` — quick expense, e.g.
   `/pecunia-add 12.50 lunch #food`. With one account the @CODE is optional;
   writes it makes are the user's own, not source "ai".
-- `/pecunia-coach` — the one LLM command: an agent session that reads the
+- `/pecunia-coach` — an LLM command: an agent session that reads the
   situation, keeps a single coaching plan and gives tips. Words after the
   command are a quick update for the coach; `--forget` wipes the plan and
   its reminders. Needs omni ≥ v0.25.0.
+- `/pecunia-import [account or card]` — the other LLM command: an agent
+  session that reads a statement (PDF, CSV, OFX, JSON) or a photo of a
+  receipt the owner sends next — or with the command as the file's caption
+  — maps and deduplicates the rows, previews the batch and files it only
+  after the owner says yes. Follows the pecunia-import skill. Needs omni ≥
+  v0.25.0.
 
 ## what stays yours
 
 Anything beyond echoing stored data is MCP-tool work: comparing months,
-explaining a number, importing statements, proposing budgets, hunting money
-leaks. For those, follow the pecunia-overview, pecunia-budget, pecunia-import
-and pecunia-health skills.
+explaining a number, proposing budgets, hunting money leaks. For those,
+follow the pecunia-overview, pecunia-budget and pecunia-health skills. A
+statement or receipt the owner sends in plain chat cannot be filed from
+there — point them at `/pecunia-import`, which runs the pecunia-import skill
+with the tools it needs.
