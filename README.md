@@ -172,4 +172,4 @@ scripts/build.sh           # release-style build (GOOS/GOARCH to cross-compile)
 go test ./...
 ```
 
-See [AGENTS.md](AGENTS.md) for project context and `wiki/` for the decision log.
+See [AGENTS.md](AGENTS.md) for project context. Binding rules live in `ai/rules/`; decisions, gotchas and session history live in ai-memory.

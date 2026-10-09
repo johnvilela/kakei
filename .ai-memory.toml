@@ -1,0 +1,6 @@
+workspace = "default"
+project = "pecunia"
+project_strategy = "repo-root"
+
+[capture]
+ignore_paths = ["ai/**", "CLAUDE.md", "AGENTS.md", ".claude/**", ".agents/**"]

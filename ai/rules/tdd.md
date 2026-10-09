@@ -1,6 +1,8 @@
 ---
-tags: [testing, go, conventions, tdd]
+tags: [rules, testing, go, conventions, tdd]
 ---
+
+# TDD
 
 **ALWAYS** use TDD for a new feature or module in this repo. No exceptions —
 this is not "when convenient".
