@@ -115,7 +115,9 @@ That wires the MCP server and the skills (all of the above, plus `pecunia-omni`)
 | `/pecunia-alerts` | Only problems — overdue bills, budgets over cap, cards near their limit. Silent when all is well, which makes it a free daily nudge as an Omni scheduled task |
 | `/pecunia-add AMOUNT TITLE [@ACCOUNT] [#CATEGORY]` | Quick expense, e.g. `/pecunia-add 12.50 lunch #food`. With one account the `@CODE` is optional; with more, pecunia asks rather than guesses |
 
-One command does use the LLM — `/pecunia-coach` starts an agent session that reads your situation (via the `pecunia_situation` MCP tool), interviews you, keeps a single coaching plan in Omni's plan pages and offers twice-daily check-in reminders. Words after the command are a quick update for the coach; `/pecunia-coach --forget` wipes the plan and its reminders. Requires omni ≥ v0.25.0 — older installs reject the manifest.
+Two commands do use the LLM. `/pecunia-coach` starts an agent session that reads your situation (via the `pecunia_situation` MCP tool), interviews you, keeps a single coaching plan in Omni's plan pages and offers twice-daily check-in reminders. Words after the command are a quick update for the coach; `/pecunia-coach --forget` wipes the plan and its reminders. Requires omni ≥ v0.25.0 — older installs reject the manifest.
+
+`/pecunia-import [account or card]` starts an agent session that waits for a statement — PDF, CSV, OFX or JSON — or a photo of a receipt: send the file right after the command, or send it with the command as its caption. The agent reads it, maps every row to an account or card and a category, skips what is already in the ledger, previews the batch in plain lines and files it only after you say yes. Same omni ≥ v0.25.0 requirement.
 
 ## Data
 
@@ -170,4 +172,4 @@ scripts/build.sh           # release-style build (GOOS/GOARCH to cross-compile)
 go test ./...
 ```
 
-See [AGENTS.md](AGENTS.md) for project context and `wiki/` for the decision log.
+See [AGENTS.md](AGENTS.md) for project context. Binding rules live in `ai/rules/`; decisions, gotchas and session history live in ai-memory.

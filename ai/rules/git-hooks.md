@@ -1,6 +1,8 @@
 ---
-tags: [git, hooks, go, conventions]
+tags: [rules, git, hooks, go, conventions]
 ---
+
+# Git hooks
 
 Every commit in this repo passes through `.githooks/pre-commit` first.
 

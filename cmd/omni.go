@@ -71,6 +71,7 @@ func manifest() omniManifest {
 			{Name: "pecunia_budget", Description: "This month's budgets against what was actually spent.", Argv: []string{"pecunia", "omni", "budget"}},
 			{Name: "pecunia_add", Description: "Quick expense: amount then title, e.g. 12.50 lunch. @CODE picks the account, #CODE the category.", Argv: []string{"pecunia", "omni", "add"}},
 			{Name: "pecunia_notes", Description: "Open notes, highest effective priority first. Add a level (low, medium, high, critical) to keep only those, or any other words to search titles and bodies.", Argv: []string{"pecunia", "omni", "notes"}},
+			{Name: "pecunia_import", Description: "Import a statement or receipt: send a PDF, CSV, OFX, JSON or a photo next (or with the command as its caption). Rows are mapped, deduplicated, previewed and filed only after you say yes. Words after the command name the account or card.", Prompt: importPrompt},
 			{Name: "pecunia_coach", Description: "Your financial coach: reads your situation, keeps one plan, gives tips. Words after the command are a quick update; --forget wipes the plan and its reminders.", Prompt: coachPrompt},
 		},
 	}

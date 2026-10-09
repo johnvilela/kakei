@@ -1,6 +1,8 @@
 ---
-tags: [git, commits, conventions]
+tags: [rules, git, commits, conventions]
 ---
+
+# Commit messages
 
 Every commit in this repo is a **single-line** Conventional Commits / commitlint
 subject. No body, no description, no trailers.
@@ -36,7 +38,7 @@ what/why, not the file list.
 
 ## Splitting commits that share a file
 
-Two modules built back to back in the same uncommitted working tree ([[tasks/07-recurring-bills-module]] and [[tasks/08-summary-module]]) had both edited `cmd/main.go`'s dispatch switch. User request: "/git-commit separate the bill form the summary". Handled by editing `cmd/main.go` down to just the first module's `case`, staging and committing that module's code, then its own `docs(wiki)` commit, then restoring the second module's `case` and repeating for it. A helper one module needs that the other introduced (`core.MoneyLine`, added while fixing the recurring-bills board but required by `internal/recurring/ui.go` to compile) rides in with whichever module can't build without it, not with the module that happened to add it.
+Two modules built back to back in the same uncommitted working tree ([[concepts/modules/07-recurring-bills-module]] and [[concepts/modules/08-summary-module]]) had both edited `cmd/main.go`'s dispatch switch. User request: "/git-commit separate the bill form the summary". Handled by editing `cmd/main.go` down to just the first module's `case`, staging and committing that module's code, then its own `docs(wiki)` commit, then restoring the second module's `case` and repeating for it. A helper one module needs that the other introduced (`core.MoneyLine`, added while fixing the recurring-bills board but required by `internal/recurring/ui.go` to compile) rides in with whichever module can't build without it, not with the module that happened to add it.
 
 ## Splitting docs commits by prior ownership
 

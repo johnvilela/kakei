@@ -246,7 +246,7 @@ func TestDelete(t *testing.T) {
 
 // TestNameIsRequired pins the guard at the store boundary rather than in the
 // form: huh returns without running its validators when stdin ends mid-form.
-// See wiki/gotchas/huh-form-skips-validators-on-eof.
+// See the ai-memory gotcha huh-form-skips-validators-on-eof.
 func TestNameIsRequired(t *testing.T) {
 	for _, blank := range []string{"", "   ", "\t"} {
 		t.Run("create rejects "+strconv.Quote(blank), func(t *testing.T) {
